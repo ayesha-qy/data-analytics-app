@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: yes  # Run tasks as root
+  tasks:
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+      become: true
+
+    - name: Deploy Application using Kubernetes
+      command: kubectl apply -f k8s/deployment.yaml
